@@ -5,13 +5,16 @@ import { BrowserRouter } from "react-router-dom";
 
 //context
 import { AuthProvider } from "./contexts/AuthContext";
+import { DBProvider } from "./contexts/DBContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <DBProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+      </DBProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -7,33 +7,51 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile";
-
-//bootstrap
-import { Container } from 'react-bootstrap'
-
+import Posts from "./components/Posts";
+import CreatePost from "./components/CreatePost";
+import Name from "./components/Name.js";
+import EditPost from "./components/EditPost.js";
 
 //context hook
 import { useAuth } from './contexts/AuthContext'
-
+import { useDB } from './contexts/DBContext'
 
 function App() {
   const { currentUser } = useAuth();
+  const { posts } = useDB();
 
   return (
-      <Container className='d-flex flex-column align-items-center justify-content-center'
-        style={{ minHeight: "100vh" }}
-      >
-        <Routes>
-          <Route exact path="/" element={currentUser == null ? <Navigate to='/login'/> : <Dashboard/>}/>
-          <Route path='/cadastro' element={<SignUp/>}/>
-          <Route path='/login' element={currentUser != null ? <Navigate to='/'/> : <Login/>}/>
-          <Route path='/esqueci-senha' element={currentUser != null ? <Navigate to='/'/> : <ForgotPassword/>}/>
-          <Route path='/update-profile' element={currentUser == null ? <Navigate to='/login'/> : <UpdateProfile/>}/>
+      <Routes>
+        
+        <Route exact path="/" element={currentUser == null ? <Navigate to='/login'/> : <Dashboard/>}/>
+        
+        <Route path='/cadastro' element={<SignUp/>}/>
 
-          {/* CRIAR LOGGED ROUTE COMPONENT E UPDATE PROFILE */}
+        <Route path='/nome' element={<Name/>}/>
+        
+        <Route path='/login' element={currentUser != null ? <Navigate to='/'/> : <Login/>}/>
+        
+        <Route path='/esqueci-senha' element={currentUser != null ? <Navigate to='/'/> : <ForgotPassword/>}/>
+        
+        <Route path='/update-profile' element={currentUser == null ? <Navigate to='/login'/> : <UpdateProfile/>}/>
 
-        </Routes>
-      </Container>
+        <Route path='/posts' element={currentUser == null ? <Navigate to='/login'/> : <Posts/>}/>
+
+        <Route path='/create-post' element={currentUser == null ? <Navigate to='/login'/> : <CreatePost/>}/>
+
+        {posts.map( post => {
+            <Route path={`/${post.id}`} element={currentUser == null ? <Navigate to='/login'/> : 
+            <EditPost 
+            postRef={post.id}
+            typeValue={post.type}
+            infoValue={post.info}
+            assignedValue={post.assigned}
+            statusValue={post.status}
+             />} />
+        })}
+
+      </Routes>
+    
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 
 
 const AuthContext = React.createContext();
@@ -43,6 +43,12 @@ export function AuthProvider({ children }) {
         // TROCAR FUNCTION PRA DATABASE Q TO USANDO
     }
 
+    function upProfile(name, URL) {
+        return updateProfile(currentUser, name, URL)
+        // TROCAR FUNCTION PRA DATABASE Q TO USANDO
+    }
+
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
@@ -60,7 +66,8 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         upEmail,
-        upPassword
+        upPassword,
+        upProfile
     }
 
     return (
