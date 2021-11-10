@@ -23,24 +23,24 @@ function App() {
   return (
       <Routes>
         
-        <Route exact path="/react-crud/" element={currentUser == null ? <Navigate to='/react-crud/login'/> : <Dashboard/>}/>
+        <Route exact path={process.env.PUBLIC_URL + "/"} element={currentUser == null ? <Navigate to={process.env.PUBLIC_URL + '/login'}/> : <Dashboard/>}/>
         
-        <Route path='/react-crud/cadastro' element={<SignUp/>}/>
+        <Route path='/cadastro' element={<SignUp/>}/>
 
-        <Route path='/react-crud/nome' element={<Name/>}/>
+        <Route path='/nome' element={<Name/>}/>
         
-        <Route path='/react-crud/login' element={currentUser != null ? <Navigate to='/react-crud/'/> : <Login/>}/>
+        <Route path='/login' element={currentUser != null ? <Navigate to='/'/> : <Login/>}/>
         
-        <Route path='/react-crud/esqueci-senha' element={currentUser != null ? <Navigate to='/react-crud/'/> : <ForgotPassword/>}/>
+        <Route path='/esqueci-senha' element={currentUser != null ? <Navigate to='/'/> : <ForgotPassword/>}/>
         
-        <Route path='/react-crud/update-profile' element={currentUser == null ? <Navigate to='/react-crud/login'/> : <UpdateProfile/>}/>
+        <Route path='/update-profile' element={currentUser == null ? <Navigate to='/login'/> : <UpdateProfile/>}/>
 
-        <Route path='/react-crud/posts' element={currentUser == null ? <Navigate to='/react-crud/login'/> : <Posts/>}/>
+        <Route path='/posts' element={currentUser == null ? <Navigate to='/login'/> : <Posts/>}/>
 
-        <Route path='/react-crud/create-post' element={currentUser == null ? <Navigate to='/react-crud/login'/> : <CreatePost/>}/>
+        <Route path='/create-post' element={currentUser == null ? <Navigate to='/login'/> : <CreatePost/>}/>
 
         {posts.map(post => {
-            return <Route path={`/react-crud/edit/${post.id}`} key={post.id} element={currentUser == null ? <Navigate to='/login'/> : 
+            return <Route path={`/edit/${post.id}`} key={post.id} element={currentUser == null ? <Navigate to='/login'/> : 
             <EditPost 
             postRef={post.id}
             typeValue={post.type}
