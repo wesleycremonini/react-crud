@@ -23,7 +23,7 @@ function App() {
   return (
       <Routes>
         
-        <Route exact path="/react-crud" element={currentUser == null ? <Navigate to='/login'/> : <Dashboard/>}/>
+        <Route exact path="/" element={currentUser == null ? <Navigate to='/login'/> : <Dashboard/>}/>
         
         <Route path='/cadastro' element={<SignUp/>}/>
 
