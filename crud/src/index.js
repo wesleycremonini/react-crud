@@ -11,9 +11,9 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <DBProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </DBProvider>
     </AuthProvider>
   </React.StrictMode>,

@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, getDocs, addDoc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
 
 const DBContext = React.createContext();
 
 export function useDB() {
-    return useContext(DBContext)
+    return useContext(DBContext);
 }
 
 export function DBProvider({ children }) {
@@ -21,7 +21,8 @@ export function DBProvider({ children }) {
     };
     
     async function editPost(postRef, typeValue, infoValue, assignedValue, statusValue) {
-        return await updateDoc(postRef, { type: typeValue, info: infoValue, status: statusValue, assigned: assignedValue,
+        const postDoc = doc(db, 'posts', postRef)
+        return await updateDoc(postDoc, { type: typeValue, info: infoValue, status: statusValue, assigned: assignedValue,
             color: typeValue === 'Bug' ? "danger" : typeValue === "Tarefa" ? 'primary' : typeValue === 'Documentação' ? "dark" : "warning"
         })
     };
@@ -40,7 +41,7 @@ export function DBProvider({ children }) {
         };
         fetchPosts();
         setLoading(false);
-    }, [])
+    }, [postsRef])
     
 
     const value = {

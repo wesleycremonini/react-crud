@@ -39,8 +39,8 @@ function App() {
 
         <Route path='/create-post' element={currentUser == null ? <Navigate to='/login'/> : <CreatePost/>}/>
 
-        {posts.map( post => {
-            <Route path={`/${post.id}`} element={currentUser == null ? <Navigate to='/login'/> : 
+        {posts.map(post => {
+            return <Route path={`/edit/${post.id}`} key={post.id} element={currentUser == null ? <Navigate to='/login'/> : 
             <EditPost 
             postRef={post.id}
             typeValue={post.type}

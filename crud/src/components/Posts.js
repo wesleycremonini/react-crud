@@ -11,7 +11,7 @@ import { useAuth } from '../contexts/AuthContext'
 
 //font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 export default function Posts() {
     const { posts } = useDB();
@@ -26,8 +26,11 @@ export default function Posts() {
     };
 
     useEffect(() => {
-        setLoading(false);
-    }, [])
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+        
+    }, []);
 
     return (
         <div>
@@ -77,7 +80,7 @@ export default function Posts() {
                 <Row xs={12} md={12} style={{ minHeight: "72vh" }}
                 className='w-100 bg-light p-3 d-flex flex-row gap-4 justify-content-center'>
 
-                    <Col lg={2} className='bg-white d-flex flex-column gap-2 rounded-3 p-3'>
+                    <Col lg={2} className='bg-white d-flex flex-column rounded-3 p-3'>
                         <h3 className='border-bottom border-info border-4'>Abertos</h3>
                         {posts.map((post, idx) => 
                         <div key={idx}>
@@ -87,10 +90,11 @@ export default function Posts() {
                             post.info.toLowerCase().includes(search) ||
                             post.type.toLowerCase().includes(search)
                                 ) &&
-                            <Card border={post.color} className="text-center w-100 p-0">
+                            <Card border={post.color} className="text-center w-100 mt-2 p-0">
 
                                 <Card.Header className={`text-light bg-${post.color}`}>
                                     {post.type}
+                                    <Link to={`/edit/${post.id}`}><Button className='position-absolute top-0 end-0' variant='transparent'><FontAwesomeIcon icon={faEdit} color='white'/></Button></Link>
                                 </Card.Header>
 
                                 <Card.Body className='text-start'>
@@ -101,15 +105,13 @@ export default function Posts() {
                                     {post.assigned}
                                 </Card.Footer>
 
-                                {/* ADICIONAR BOTÃO DE EDITAR */}
-                                <Link to={`/${post.id}`}><Button  variant='secondary' className='w-25'></Button></Link>
                             </Card>
                             }
                         </div>
                             )}
                     </Col>
 
-                    <Col lg={2} className='bg-white d-flex flex-column gap-2 rounded-3 p-3'>
+                    <Col lg={2} className='bg-white d-flex flex-column rounded-3 p-3'>
                         <h3 className='border-bottom border-info border-4'>Reabertos</h3>
                         {posts.map((post, idx) => 
                         <div key={idx}>
@@ -119,10 +121,11 @@ export default function Posts() {
                             post.info.toLowerCase().includes(search) ||
                             post.type.toLowerCase().includes(search)
                                 ) &&
-                            <Card border={post.color} className="text-center w-100 p-0">
+                            <Card border={post.color} className="text-center mt-2 w-100 p-0">
 
                                 <Card.Header className={`text-light bg-${post.color}`}>
                                     {post.type}
+                                    <Link to={`/edit/${post.id}`}><Button className='position-absolute top-0 end-0' variant='transparent'><FontAwesomeIcon icon={faEdit} color='white'/></Button></Link>
                                 </Card.Header>
 
                                 <Card.Body className='text-start'>
@@ -139,7 +142,7 @@ export default function Posts() {
                             )}
                     </Col>
 
-                    <Col lg={2} className='bg-white d-flex flex-column gap-2 rounded-3 p-3'>
+                    <Col lg={2} className='bg-white d-flex flex-column rounded-3 p-3'>
                         <h3 className='border-bottom border-info border-4'>Em Progresso</h3>
                         {posts.map((post, idx) => 
                         <div key={idx}>
@@ -149,10 +152,11 @@ export default function Posts() {
                             post.info.toLowerCase().includes(search) ||
                             post.type.toLowerCase().includes(search)
                                 ) &&
-                            <Card border={post.color} className="text-center w-100 p-0">
+                            <Card border={post.color} className="text-center mt-2 w-100 p-0">
 
                                 <Card.Header className={`text-light bg-${post.color}`}>
                                     {post.type}
+                                    <Link to={`/edit/${post.id}`}><Button className='position-absolute top-0 end-0' variant='transparent'><FontAwesomeIcon icon={faEdit} color='white'/></Button></Link>
                                 </Card.Header>
 
                                 <Card.Body className='text-start'>
@@ -169,7 +173,7 @@ export default function Posts() {
                             )}
                     </Col>
 
-                    <Col lg={2} className='bg-white d-flex flex-column gap-2 rounded-3 p-3'>
+                    <Col lg={2} className='bg-white d-flex flex-column rounded-3 p-3'>
                         <h3 className='border-bottom border-info border-4'>Fechados</h3>
                         {posts.map((post, idx) => 
                         <div key={idx}>
@@ -179,10 +183,11 @@ export default function Posts() {
                             post.info.toLowerCase().includes(search) ||
                             post.type.toLowerCase().includes(search)
                                 ) &&
-                            <Card border={post.color} className="text-center w-100 p-0">
+                            <Card border={post.color} className="text-center mt-2 w-100 p-0">
 
                                 <Card.Header className={`text-light bg-${post.color}`}>
                                     {post.type}
+                                    <Link to={`/edit/${post.id}`}><Button className='position-absolute top-0 end-0' variant='transparent'><FontAwesomeIcon icon={faEdit} color='white'/></Button></Link>
                                 </Card.Header>
 
                                 <Card.Body className='text-start'>
@@ -199,7 +204,7 @@ export default function Posts() {
                             )}
                     </Col>
 
-                    <Col lg={2} className='bg-white d-flex flex-column gap-2 rounded-3 p-3'>
+                    <Col lg={2} className='bg-white d-flex flex-column rounded-3 p-3'>
                         <h3 className='border-bottom border-info border-4'>Para mim</h3>
                         {posts.map((post, idx) => 
                         <div key={idx}>
@@ -209,10 +214,11 @@ export default function Posts() {
                             post.info.toLowerCase().includes(search) ||
                             post.type.toLowerCase().includes(search)
                                 ) &&
-                            <Card border={post.color} className="text-center w-100 p-0">
+                            <Card border={post.color} className="text-center mt-2 w-100 p-0">
 
                                 <Card.Header className={`text-light bg-${post.color}`}>
                                     {post.type}
+                                    <Link to={`/edit/${post.id}`}><Button className='position-absolute top-0 end-0' variant='transparent'><FontAwesomeIcon icon={faEdit} color='white'/></Button></Link>
                                 </Card.Header>
 
                                 <Card.Body className='text-start'>

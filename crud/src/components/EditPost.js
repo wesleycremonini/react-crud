@@ -24,7 +24,7 @@ export default function EditPost({ postRef, typeValue, infoValue, assignedValue,
         try {
             setError('')
             setLoading(true)
-            await editPost(postRef, { type: typeRef.current.value , info: infoRef.current.value, assigned: nameRef.current.value, status: statusRef.current.value })
+            await editPost(postRef, typeRef.current.value, infoRef.current.value, nameRef.current.value, statusRef.current.value)
             navigate("/posts");
         } catch {
             setError('Falha ao editar')
@@ -88,8 +88,8 @@ export default function EditPost({ postRef, typeValue, infoValue, assignedValue,
                     <Spinner animation="border align-self-center" /> : 
                     <Stack gap={2}>
                         <Button className='w-100' type='submit'>Editar</Button>
-                        <Button className='w-100' variant="outline-danger" onClick={handleDelete}>Deletar</Button>
                         <Link to='/posts'><Button className='w-100' variant="outline-danger">Cancelar</Button></Link>
+                        <Button className='w-100' variant="danger" onClick={handleDelete}>Deletar</Button>
                     </Stack>
                     }
 
