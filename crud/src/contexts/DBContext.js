@@ -12,25 +12,29 @@ export function DBProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
     const postsRef = collection(db, "posts");
+    const [fetchAgain, setFetchAgain] = useState(false)
 
 
     async function createPost(typeValue, infoValue, assignedValue) {
-        return await addDoc(postsRef, { type: typeValue, info: infoValue, status: "abertos", assigned: assignedValue,
+        await addDoc(postsRef, { type: typeValue, info: infoValue, status: "abertos", assigned: assignedValue,
             color: typeValue === 'Bug' ? "danger" : typeValue === "Tarefa" ? 'primary' : typeValue === 'Documentação' ? "dark" : "warning"
         })
+        setFetchAgain(fetchAgain == true ? false : true)
     };
     
     async function editPost(postRef, typeValue, infoValue, assignedValue, statusValue) {
         const postDoc = doc(db, 'posts', postRef)
-        return await updateDoc(postDoc, { type: typeValue, info: infoValue, status: statusValue, assigned: assignedValue,
+        await updateDoc(postDoc, { type: typeValue, info: infoValue, status: statusValue, assigned: assignedValue,
             color: typeValue === 'Bug' ? "danger" : typeValue === "Tarefa" ? 'primary' : typeValue === 'Documentação' ? "dark" : "warning"
         })
+        setFetchAgain(fetchAgain == true ? false : true)
     };
 
     async function deletePost(typeValue, infoValue, assignedValue) {
-        return await deleteDoc(postsRef, { type: typeValue, info: infoValue, status: "abertos", assigned: assignedValue,
+        await deleteDoc(postsRef, { type: typeValue, info: infoValue, status: "abertos", assigned: assignedValue,
             color: typeValue === 'Bug' ? "danger" : typeValue === "Tarefa" ? 'primary' : typeValue === 'Documentação' ? "dark" : "warning"
         })
+        setFetchAgain(fetchAgain == true ? false : true)
     };
 
 
@@ -41,7 +45,7 @@ export function DBProvider({ children }) {
         };
         fetchPosts();
         setLoading(false);
-    }, [postsRef])
+    }, [fetchAgain])
     
 
     const value = {
