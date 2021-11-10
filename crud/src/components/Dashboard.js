@@ -46,6 +46,8 @@ export default function Dashboard() {
 
                 <p><strong>Email: </strong>{currentUser.email}</p>
                 <Stack gap={2}>
+                    <Link to="/posts" className='btn btn-primary w-100 mt-3'>Ir para Posts</Link>
+
                     <Link to="/update-profile" className='btn btn-primary w-100 mt-3'>Atualizar Perfil</Link>
                     <Link to='/posts'><Button className='w-100' variant="outline-primary">Voltar</Button></Link>
                     <Button variant='outline-danger' onClick={handleLogout}>Sair</Button>
