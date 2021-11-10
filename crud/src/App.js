@@ -23,7 +23,7 @@ function App() {
   return (
       <Routes>
         
-        <Route exact path={process.env.PUBLIC_URL + "/"} element={currentUser == null ? <Navigate to={process.env.PUBLIC_URL + '/login'}/> : <Dashboard/>}/>
+        <Route exact path={process.env.PUBLIC_URL + "/"} element={<Dashboard/>}/>
         
         <Route path='/cadastro' element={<SignUp/>}/>
 
