@@ -1,7 +1,7 @@
 # Aplicação de CRUD em React.JS
 
 
-<h3>Alguns dos recursos utlizados:</h3>
+<h3>Alguns dos recursos utilizados:</h3>
 React functional component <br />
 JSX <br />
 useRef, useEffect <br />
