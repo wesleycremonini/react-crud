@@ -27,7 +27,7 @@ function App() {
         
         <Route path='/cadastro' element={<SignUp/>}/>
 
-        <Route path='/nome' element={<Name/>}/>
+        <Route path='/nome' element={currentUser == null ? <Navigate to='/login'/> : <Name/>}/>
         
         <Route path='/login' element={currentUser != null ? <Navigate to='/'/> : <Login/>}/>
         
