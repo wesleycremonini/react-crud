@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <DBProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <App />
         </BrowserRouter>
       </DBProvider>
