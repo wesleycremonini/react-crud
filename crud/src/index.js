@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 //context
 import { AuthProvider } from "./contexts/AuthContext";
@@ -11,9 +11,9 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <DBProvider>
-        <BrowserRouter basename='/react-crud'>
+        <HashRouter basename='/react-crud'>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </DBProvider>
     </AuthProvider>
   </React.StrictMode>,
