@@ -4,12 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 
 
 const app = initializeApp({
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    apiKey: "AIzaSyDrpLrwrq0i3aWfGdoFply6JsIzpj5WRF4",
+    authDomain: "react-crud-dev.firebaseapp.com",
+    databaseURL: "https://react-crud-dev-default-rtdb.firebaseio.com",
+    projectId: "react-crud-dev",
+    storageBucket: "react-crud-dev.appspot.com",
+    messagingSenderId: "512249191321",
+    appId: "1:512249191321:web:75e43a2400c52dc703d108"
 })
 
 export const auth = getAuth(app);

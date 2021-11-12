@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <DBProvider>
-        <HashRouter basename='/react-crud'>
+        <HashRouter>
           <App />
         </HashRouter>
       </DBProvider>

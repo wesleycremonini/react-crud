@@ -21,7 +21,7 @@ function App() {
   const { posts } = useDB();
 
   return (
-      <Routes>
+      <Routes basename='/react-crud'>
         
         <Route exact path="/" element={currentUser == null ? <Navigate to='/login'/> : <Dashboard/>}/>
         
