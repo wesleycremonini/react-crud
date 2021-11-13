@@ -30,10 +30,9 @@ export function DBProvider({ children }) {
         setFetchAgain(fetchAgain == true ? false : true)
     };
 
-    async function deletePost(typeValue, infoValue, assignedValue) {
-        await deleteDoc(postsRef, { type: typeValue, info: infoValue, status: "abertos", assigned: assignedValue,
-            color: typeValue === 'Bug' ? "danger" : typeValue === "Tarefa" ? 'primary' : typeValue === 'Documentação' ? "dark" : "warning"
-        })
+    async function deletePost(postRef) {
+        const postDoc = doc(db, 'posts', postRef)
+        await deleteDoc(postDoc)
         setFetchAgain(fetchAgain == true ? false : true)
     };
 

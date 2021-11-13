@@ -44,14 +44,14 @@ export default function Posts() {
                 </Link>
             </div>
 
-            <div style={{ height: "150px" }} md={12} className='d-flex bg-light flex-column p-5 pb-0'>
+            <div style={{ minHeight: "150px" }} md={12} className='d-flex bg-light flex-column p-5 pb-0'>
                 <div className='col-12 d-flex flex-column gap-3 flex-md-row bg-light align-self-start'>
                     <div className='d-flex flex-row align-items-center '>
                         <h1>Sumário de Bugs</h1>
-                        <Link to='/create-post'><Button className='ms-4'><h4>Criar Bug</h4></Button></Link>
+                        <Link to='/create-post'><Button  className='ms-4'><h4>Criar Bug</h4></Button></Link>
                     </div>
 
-                    <div className='d-flex flex-row align-items-center  ms-auto'>
+                    <div className='d-flex flex-sm-row flex-column justify-content-center gap-2 align-items-center  ms-auto'>
                         <Form.Group className='w-50'>
                             <Form.Select onChange={(e) => setSearchTag(e.target.value.toLowerCase())}>
                                 <option value=''>Todos</option>
@@ -70,7 +70,7 @@ export default function Posts() {
                                 <FontAwesomeIcon icon={faSearch} />
                             </Button>
                         </InputGroup>
-                        <Button variant='success' className='ms-5 w-75' onClick={handleClear}>Limpar Filtros</Button>
+                        <Button variant='success' className='w-75' onClick={handleClear}>Limpar Filtros</Button>
 
                     </div>
                 </div>
